@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description"
+        content="Request a ladies-only at-home beauty appointment with Glow & Grace. Share your address or choose your location on the map.">
+    <meta name="theme-color" content="#fff9f5">
+    <title>Book Appointment | Glow & Grace </title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+</head>
+
+<body>
+    <div class="announcement">LADIES-ONLY AT-HOME BEAUTY <b>✦</b> AT YOUR DOORSTEP</div>
+    <header class="header"><a class="brand" href="index.html"><span class="brand-mark">G<span>&</span>G</span><span
+                class="brand-name">glow <i>&</i> grace<small>AT-HOME BEAUTY STUDIO</small></span></a><button
+            class="menu" aria-label="Toggle menu" aria-expanded="false">☰</button>
+        <nav class="nav"><a href="index.html">Home</a><a href="services.html">Services</a><a href="contact.html">Contact
+                & Pricing</a><a class="nav-button" href="booking.html">Book Appointment <span>↗</span></a></nav>
+    </header>
+    <main id="top">
+        <section class="page-hero">
+            <div class="eyebrow">YOUR AT-HOME BEAUTY APPOINTMENT</div>
+            <h1>Let's plan your <em>me-time.</em></h1>
+            <p>Choose your service, preferred time and home location. Our team will contact you on WhatsApp to confirm
+                coverage, availability and final pricing.</p>
+        </section>
+        <section class="section wrap">
+            <div class="booking-layout">
+                <div>
+                    <div class="eyebrow">A LITTLE PREPARATION</div>
+                    <h2 style="font-size:42px;margin:12px 0">Your home becomes <em>our studio.</em></h2>
+                    <p style="font-size:12px;color:var(--muted);line-height:2">To help our beauty professional reach you
+                        smoothly, share a complete address and mark the correct point on the map. You can use your
+                        current location or search for an address, then move the red pin if needed.</p>
+                    <div class="notice"><strong>Location privacy:</strong> Your browser will ask permission before
+                        sharing your current location. You can also type your address manually or select the map without
+                        sharing GPS.</div>
+                    <div class="notice"><strong>Booking status:</strong> Submitting this form sends an enquiry to
+                        WhatsApp. It does not automatically confirm an appointment or reserve a time slot.</div>
+                    <div style="margin-top:28px">
+                        <div class="eyebrow">NEED A HAND?</div>
+                        <h3 style="font:600 22px var(--serif);margin:10px 0">Our team can help.</h3>
+                        <p style="font-size:11px;color:var(--muted)">Call or message us if you need help choosing a
+                            service or checking whether your area is covered.</p><a class="text-link whatsapp-link"
+                            href="#">Chat on WhatsApp ↗</a>
+                    </div>
+                </div>
+                <form class="form-card" id="bookingForm">
+                    <h2>Appointment request</h2>
+                    <p class="form-intro">Fields marked * are required.</p>
+                    <div class="form-grid">
+                        <div class="field"><label for="name">Full name *</label><input id="name" name="name"
+                                placeholder="Your name" required></div>
+                        <div class="field"><label for="phone">Mobile number *</label><input id="phone" name="phone"
+                                type="tel" inputmode="tel" pattern="[0-9+() -]{10,16}" placeholder="10-digit number"
+                                required></div>
+
+                        <!-- ===== MULTI-SERVICE PICKER (replaces single dropdown) ===== -->
+                        <div class="field full"><label>Choose your beauty services * <small style="font-weight:400">(you
+                                    can select more than one)</small></label>
+                            <div class="service-picker" id="servicePicker">
+                                <fieldset class="svc-group">
+                                    <legend>Skin &amp; Facial Care</legend>
+                                    <div class="svc-list">
+                                        <label class="svc"><input type="checkbox" name="services"
+                                                value="Basic Cleanup"><span>Basic Cleanup</span></label>
+                                        <label class="svc"><input type="checkbox" name="services"
+                                                value="Fruit / Herbal Facial"><span>Fruit / Herbal Facial</span></label>
+                                        <label class="svc"><input type="checkbox" name="services"
+                                                value="Hydrating Facial"><span>Hydrating Facial</span></label>
+                                        <label class="svc"><input type="checkbox" name="services"
+                                                value="De-Tan Treatment"><span>De-Tan Treatment</span></label>
+                                        <label class="svc"><input type="checkbox" name="services"
+                                                value="Brightening Facial"><span>Brightening Facial</span></label>
+                                        <label class="svc"><input type="checkbox" name="services"
+                                                value="Face Bleach"><span>Face Bleach</span></label>
+                                    </div>
+                                </fieldset>
+                                <fieldset class="svc-group">
+                                    <legend>Waxing &amp; Threading</legend>
+                                    <div class="svc-list">
+                                        <label class="svc"><input type="checkbox" name="services"
+                                                value="Full Arms Wax"><span>Full Arms Wax</span></label>
+                                        <label class="svc"><input type="checkbox" name="services"
+                                                value="Half Arms Wax"><span>Half Arms Wax</span></label>
+                                        <label class="svc"><input type="checkbox" name="services"
+                                                value="Full Legs Wax"><span>Full Legs Wax</span></label>
+                                        <label class="svc"><input type="checkbox" name="services"
+                                                value="Underarms Wax"><span>Underarms Wax</span></label>
+                                        <label class="svc"><input type="checkbox" name="services"
+                                                value="Full Body Wax"><span>Full Body Wax</span></label>
+                                        <label class="svc"><input type="checkbox" name="services"
+                                                value="Eyebrow & Upper Lip Threading"><span>Eyebrow &amp; Upper Lip
+                                                Threading</span></label>
+                                    </div>
+                                </fieldset>
+                                <fieldset class="svc-group">
+                                    <legend>Manicure &amp; Pedicure</legend>
+                                    <div class="svc-list">
+                                        <label class="svc"><input type="checkbox" name="services"
+                                                value="Classic Manicure"><span>Classic Manicure</span></label>
+                                        <label class="svc"><input type="checkbox" name="services"
+                                                value="Classic Pedicure"><span>Classic Pedicure</span></label>
+                                        <label class="svc"><input type="checkbox" name="services"
+                                                value="Luxury Mani-Pedi"><span>Luxury Mani-Pedi</span></label>
+                                    </div>
+                                </fieldset>
+                                <fieldset class="svc-group">
+                                    <legend>Hair Care &amp; Styling</legend>
+                                    <div class="svc-list">
+                                        <label class="svc"><input type="checkbox" name="services"
+                                                value="Hair Wash & Blow Dry"><span>Hair Wash &amp; Blow
+                                                Dry</span></label>
+                                        <label class="svc"><input type="checkbox" name="services"
+                                                value="Hair Spa"><span>Hair Spa</span></label>
+                                        <label class="svc"><input type="checkbox" name="services"
+                                                value="Hair Styling"><span>Hair Styling</span></label>
+                                    </div>
+                                </fieldset>
+                                <fieldset class="svc-group">
+                                    <legend>Makeup &amp; Occasion</legend>
+                                    <div class="svc-list">
+                                        <label class="svc"><input type="checkbox" name="services"
+                                                value="Party Makeup"><span>Party Makeup</span></label>
+                                        <label class="svc"><input type="checkbox" name="services"
+                                                value="Engagement Makeup"><span>Engagement Makeup</span></label>
+                                        <label class="svc"><input type="checkbox" name="services"
+                                                value="Bridal Makeup"><span>Bridal Makeup</span></label>
+                                    </div>
+                                </fieldset>
+                                <fieldset class="svc-group">
+                                    <legend>Body &amp; Relaxation</legend>
+                                    <div class="svc-list">
+                                        <label class="svc"><input type="checkbox" name="services"
+                                                value="Relaxing Body Massage"><span>Relaxing Body Massage</span></label>
+                                        <label class="svc"><input type="checkbox" name="services"
+                                                value="Body Polishing"><span>Body Polishing</span></label>
+                                    </div>
+                                </fieldset>
+                                <fieldset class="svc-group">
+                                    <legend>Not sure?</legend>
+                                    <div class="svc-list">
+                                        <label class="svc"><input type="checkbox" name="services"
+                                                value="Other / Need consultation"><span>Other / Need
+                                                consultation</span></label>
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <!-- keeps the field name "service" alive for any existing script; filled automatically -->
+                            <input type="hidden" id="service" name="service">
+                            <div id="serviceSummary" class="location-status service-summary" aria-live="polite">No
+                                service selected yet.</div>
+                        </div>
+
+                        <!-- ===== NUMBER OF PERSONS ===== -->
+                        <div class="field"><label for="persons">Number of persons *</label>
+                            <div class="persons-stepper">
+                                <button type="button" id="personsMinus" aria-label="Decrease persons">−</button>
+                                <input id="persons" name="persons" type="number" inputmode="numeric" min="1" max="20"
+                                    value="1" required>
+                                <button type="button" id="personsPlus" aria-label="Increase persons">+</button>
+                            </div>
+                            <small>Total people who will take the service(s).</small>
+                        </div>
+
+                        <div class="field"><label for="date">Preferred date *</label><input id="date" name="date"
+                                type="date" required></div>
+                        <div class="field"><label for="time">Preferred time *</label><select id="time" name="time"
+                                required>
+                                <option value="">Choose a time</option>
+                                <option>9 AM – 12 PM</option>
+                                <option>12 PM – 3 PM</option>
+                                <option>3 PM – 6 PM</option>
+                                <option>6 PM – 8 PM</option>
+                            </select></div>
+                        <div class="field full"><label for="bookingAddress">Complete home address *</label><textarea
+                                id="bookingAddress" name="address" rows="3"
+                                placeholder="Flat / building, street, area, landmark, Mumbai, PIN code"
+                                required></textarea><small>Please include building name, flat number, landmark and PIN
+                                code.</small></div>
+                        <div class="field full"><label>Choose your location on the map</label>
+                            <div class="location-actions"><button class="small-btn" type="button" id="useMyLocation">◎
+                                    Use my current location</button><button class="small-btn" type="button"
+                                    id="findAddress">⌕ Find typed address</button></div>
+                            <div id="locationStatus" class="location-status" aria-live="polite">Search an address, use
+                                current location or tap the map to place the red pin.</div>
+                            <div id="bookingMap" class="booking-map"></div><small>Tap the map to drop a pin. Drag the
+                                red pin to adjust the exact doorstep location.</small>
+                        </div>
+                        <input type="hidden" name="latitude" id="latitude"><input type="hidden" name="longitude"
+                            id="longitude">
+                        <div class="field full"><label for="notes">Additional notes (optional)</label><textarea
+                                id="notes" name="notes" rows="2"
+                                placeholder="Apartment access, preferred products, event details, etc."></textarea>
+                        </div>
+                        <div class="field full"><button class="btn" type="submit" style="width:100%">Send booking
+                                enquiry on WhatsApp <span>↗</span></button>
+                            <div id="bookingError" class="location-status" role="alert"></div>
+                            <p class="form-note">By submitting, you agree that Glow & Grace may contact you about this
+                                appointment request. Your booking is subject to confirmation by the team.</p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <div class="footer-main"><a class="brand" href="index.html"><span
+                    class="brand-mark">G<span>&</span>G</span><span class="brand-name">glow <i>&</i> grace<small>AT-HOME
+                        BEAUTY STUDIO</small></span></a>
+            <p>A softer kind of salon experience.<br>Professional beauty care, delivered to her door.</p><a
+                class="footer-cta" href="booking.html">MAKE TIME FOR YOU ↗</a>
+        </div>
+        <div class="footer-bottom"><span>© <span data-year></span> Glow & Grace. All rights
+                reserved.</span><span>LADIES-ONLY AT-HOME BEAUTY SERVICES · MUMBAI</span><a href="#top">BACK TO TOP
+                ↑</a></div>
+    </footer>
+    <div class="floating-actions"><a class="float-btn call call-link" href="tel:+91XXXXXXXXXX"
+            aria-label="Call Glow and Grace"><svg viewBox="0 0 24 24">
+                <path
+                    d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.4 19.4 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.2-1.3a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.8 2.1z" />
+            </svg></a><a class="float-btn wa whatsapp-link" href="#" target="_blank" rel="noopener"
+            aria-label="WhatsApp Glow and Grace"><svg viewBox="0 0 24 24">
+                <path d="M20.5 11.5a8.5 8.5 0 0 1-12.6 7.4L3 20l1.2-4.7A8.5 8.5 0 1 1 20.5 11.5z" />
+                <path
+                    d="M8.5 8.2c.5 2.5 2.3 4.3 4.8 4.8l1.1-1.1 2 .9c-.2 1.1-1 1.8-2.2 1.8-3.6-.2-6.8-3.4-7-7 0-1.2.7-2 1.8-2.2l.9 2z" />
+            </svg></a></div>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="script.js"></script>
+
+    <!-- ===== Added: multi-service, persons, and map-link in WhatsApp message ===== -->
+    <script>
+        (function () {
+            // Agar script.js se WhatsApp number nahi mila, to yahan apna number daalo (country code ke saath, bina + ke)
+            var FALLBACK_WHATSAPP_NUMBER = "91XXXXXXXXXX";
+
+            var form = document.getElementById("bookingForm");
+            if (!form) return;
+
+            var checkboxes = form.querySelectorAll('input[name="services"]');
+            var hiddenService = document.getElementById("service");
+            var summary = document.getElementById("serviceSummary");
+            var persons = document.getElementById("persons");
+            var errorBox = document.getElementById("bookingError");
+            var latEl = document.getElementById("latitude");
+            var lngEl = document.getElementById("longitude");
+
+            function selectedServices() {
+                var list = [];
+                checkboxes.forEach(function (c) {if (c.checked) list.push(c.value);});
+                return list;
+            }
+
+            function refreshServices() {
+                var list = selectedServices();
+                hiddenService.value = list.join(", ");
+                summary.textContent = list.length
+                    ? "Selected (" + list.length + "): " + list.join(", ")
+                    : "No service selected yet.";
+            }
+            checkboxes.forEach(function (c) {c.addEventListener("change", refreshServices);});
+            refreshServices();
+
+            // Optional: services.html se ?service=Hair%20Spa aaye to auto-select
+            try {
+                var qs = new URLSearchParams(window.location.search).get("service");
+                if (qs) {
+                    qs.split(",").forEach(function (s) {
+                        checkboxes.forEach(function (c) {
+                            if (c.value.toLowerCase() === s.trim().toLowerCase()) c.checked = true;
+                        });
+                    });
+                    refreshServices();
+                }
+            } catch (e) { }
+
+            // Persons stepper
+            function clampPersons() {
+                var v = parseInt(persons.value, 10);
+                if (isNaN(v) || v < 1) v = 1;
+                if (v > 20) v = 20;
+                persons.value = v;
+            }
+            document.getElementById("personsMinus").addEventListener("click", function () {
+                persons.value = (parseInt(persons.value, 10) || 1) - 1; clampPersons();
+            });
+            document.getElementById("personsPlus").addEventListener("click", function () {
+                persons.value = (parseInt(persons.value, 10) || 0) + 1; clampPersons();
+            });
+            persons.addEventListener("change", clampPersons);
+
+            // Aaj se pehle ki date block karo
+            var dateEl = document.getElementById("date");
+            if (dateEl) {
+                var t = new Date();
+                var pad = function (n) {return String(n).padStart(2, "0");};
+                dateEl.min = t.getFullYear() + "-" + pad(t.getMonth() + 1) + "-" + pad(t.getDate());
+            }
+
+            // WhatsApp number: pehle page ke whatsapp-link se, nahi to fallback
+            function getWhatsAppNumber() {
+                var links = document.querySelectorAll(".whatsapp-link");
+                for (var i = 0; i < links.length; i++) {
+                    var m = (links[i].getAttribute("href") || "").match(/wa\.me\/(\d{8,15})/);
+                    if (m) return m[1];
+                    var m2 = (links[i].getAttribute("href") || "").match(/phone=(\d{8,15})/);
+                    if (m2) return m2[1];
+                }
+                return FALLBACK_WHATSAPP_NUMBER;
+            }
+
+            function formatDate(v) {
+                if (!v) return "";
+                var d = new Date(v + "T00:00:00");
+                return isNaN(d) ? v : d.toLocaleDateString("en-IN", {weekday: "short", day: "numeric", month: "short", year: "numeric"});
+            }
+
+            function buildMessage() {
+                var f = form.elements;
+                var services = selectedServices();
+                var lat = parseFloat(latEl.value);
+                var lng = parseFloat(lngEl.value);
+                var hasPin = !isNaN(lat) && !isNaN(lng);
+
+                var lines = [
+                    "*New Booking Enquiry - Glow & Grace*",
+                    "",
+                    "*Name:* " + f.name.value.trim(),
+                    "*Mobile:* " + f.phone.value.trim(),
+                    "*Persons:* " + persons.value,
+                    "*Services (" + services.length + "):*"
+                ];
+                services.forEach(function (s, i) {lines.push((i + 1) + ". " + s);});
+                lines.push("");
+                lines.push("*Date:* " + formatDate(f.date.value));
+                lines.push("*Time:* " + f.time.value);
+                lines.push("");
+                lines.push("*Address:* " + f.address.value.trim());
+                if (hasPin) {
+                    lines.push("*Map Location:* https://www.google.com/maps?q=" + lat.toFixed(6) + "," + lng.toFixed(6));
+                    lines.push("*Directions:* https://www.google.com/maps/dir/?api=1&destination=" + lat.toFixed(6) + "," + lng.toFixed(6));
+                } else {
+                    lines.push("*Map Location:* Not shared (please confirm address)");
+                }
+                var notes = f.notes.value.trim();
+                if (notes) {lines.push(""); lines.push("*Notes:* " + notes);}
+                return lines.join("\n");
+            }
+
+            // Capture phase: existing script.js ke submit handler se PEHLE chalta hai
+            document.addEventListener("submit", function (e) {
+                if (e.target !== form) return;
+                e.preventDefault();
+                e.stopImmediatePropagation();
+
+                errorBox.textContent = "";
+                clampPersons();
+
+                if (!selectedServices().length) {
+                    errorBox.textContent = "Please select at least one service.";
+                    document.getElementById("servicePicker").scrollIntoView({behavior: "smooth", block: "center"});
+                    return;
+                }
+                if (!form.checkValidity()) {form.reportValidity(); return;}
+
+                var url = "https://wa.me/" + getWhatsAppNumber() + "?text=" + encodeURIComponent(buildMessage());
+                var w = window.open(url, "_blank", "noopener");
+                if (!w) window.location.href = url; // popup blocked ho to same tab me khol do
+            }, true);
+        })();
+    </script>
+</body>
+
+</html>
